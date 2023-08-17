@@ -19,7 +19,8 @@ a:hover {
 
 body {
     z-index: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, 1)), url("./img/background1.png");
+    /* background: linear-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, 1)), url("./img/background1.png"); */
+    background-image: none;
     background-size: cover;
     /* 调整图片尺寸以适应屏幕 */
     background-repeat: no-repeat;
@@ -32,6 +33,8 @@ body {
     /* align-items: center; */
     margin: 0;
     width: 100%;
+    transition: opacity 1s ease-in-out;
+    
 }
 
 .main {
