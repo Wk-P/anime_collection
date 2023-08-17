@@ -1,0 +1,170 @@
+* {
+    margin: 0 0;
+}
+
+a {
+    display: block;
+    width: 200px;
+    color: #4052a7;
+    font-weight: normal;
+    text-decoration: none;
+    align-items: center;
+    white-space: normal;
+}
+
+a:hover {
+    cursor: pointer;
+    color: #fffeee;
+}
+
+body {
+    z-index: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, 1)), url("./img/background1.png");
+    background-size: cover;
+    /* 调整图片尺寸以适应屏幕 */
+    background-repeat: no-repeat;
+    /* 防止图片平铺重复 */
+    background-attachment: fixed;
+    /* 固定背景，使其在滚动时保持不变 */
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    /* align-items: center; */
+    margin: 0;
+    width: 100%;
+}
+
+.main {
+    z-index: 1;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    z-index: 1;
+    width: 100%;
+    border-style: none;
+    border-collapse: separate;
+    /* 使用独立的边框模型 */
+    border-spacing: 10px;
+    /* 设置间距为 10px */
+    overflow: hidden;
+    /* 隐藏超出部分 */
+    white-space: nowrap;
+    /* 不换行 */
+    text-overflow: ellipsis;
+    /* 超出部分显示省略号 */
+}
+
+td div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main table td img {
+    width: 200px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: 0.3s ease;
+}
+
+.main table td img:hover {
+    width: calc(200px * 1.2);
+}
+
+th {
+    padding: 8px;
+    text-align: left;
+}
+
+#rating {
+    color: #ca743a;
+    font-weight: bolder;
+    align-items: center;
+}
+
+.div-h1 {
+    z-index: 5;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding-top: 30px;
+    text-align: center;
+    color: #bb4c4c;
+    height: 100px;
+    font-size: 39px;
+    font-weight: bold;
+    background-color: rgba(150, 255, 255, 1);
+    opacity: 0;
+    transition: 1s ease; /* 添加过渡效果 */
+    white-space: pre;
+}
+
+.sidebar {
+    top: 0;
+    position: sticky;
+    width: 5%;
+    z-index: 2;
+    height: 1000px;
+}
+
+.sidebar ul {
+    background-color: #fffeee;
+    list-style: none;
+    display: flex;
+    /* 使用弹性布局 */
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    transition: 0.3s ease;
+    /* 添加过渡效果 */
+    opacity: 0.5;
+}
+
+.sidebar:hover ul {
+    opacity: 1;
+    width: 200px;
+}
+
+.sidebar li {
+    padding-top: 14px;
+    align-items: center;
+    width: 100%;
+}
+
+.sidebar li div,
+.sidebar li a {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+}
+
+.sidebar li a {
+    transition: 0.3s ease;
+}
+
+.sidebar li a:hover {
+    color: #fff;
+    background-color: #979;
+    border: #fff solid 1px;
+}
+
+.time-display {
+    font-size: bold;
+    font-weight: 800;
+    color: #4052a7;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease;
+}

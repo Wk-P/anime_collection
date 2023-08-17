@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static '/js/collection.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/collection_style.css' %}">
+    <title>追番列表</title>
+</head>
+
+<body>
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><div class="time-display" id="current-time1"></div></li>
+            <li><div class="time-display" id="current-time2"></div></li>
+            <li><div><a>主页</a></div></li>
+            <li><div><a href="{% url 'index' %}">追番</a></div></li>
+            <li><div><a href="#">经济</a></div></li>
+            <li><div><a href="#">社会</a></div></li>
+            <li><div><a href="#">学习</a></div></li>
+            <li><div><a href="#">娱乐</a></div></li>
+            <li><div><a href="#">音乐</a></div></li>
+        </ul>
+    </div>
+    <div class="main" id="main">
+        <div class="div-h1" id="head-div">♥   我的追番   ♥</div>
+        {% csrf_token %}
+        <script>
+            window.csrfToken = '{{ csrf_token }}';
+        </script>
+    </div>
+</body>
+
+</html>
