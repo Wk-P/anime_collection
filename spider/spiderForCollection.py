@@ -2,14 +2,12 @@ import requests, json
 from http.cookies import SimpleCookie
 import datetime
 
-
-
 # test
-url = "https://space.bilibili.com/44629592"
-url1 = "https://passport.bilibili.com/x/passport-login/web/cookie/info?csrf=13e45769eebcec84ab9feb62e419bb68"
-url2 = "https://api.bilibili.com/x/space/navnum?mid=44629592"
-url3 = "https://space.bilibili.com/44629592/bangumi"
-url4 = "https://api.bilibili.com/x/space/bangumi/follow/list?type=1&follow_status=0&pn=1&ps=15&vmid=44629592&ts=1692115454699"
+# url = "https://space.bilibili.com/44629592"
+# url1 = "https://passport.bilibili.com/x/passport-login/web/cookie/info?csrf=13e45769eebcec84ab9feb62e419bb68"
+# url2 = "https://api.bilibili.com/x/space/navnum?mid=44629592"
+# url3 = "https://space.bilibili.com/44629592/bangumi"
+# url4 = "https://api.bilibili.com/x/space/bangumi/follow/list?type=1&follow_status=0&pn=1&ps=15&vmid=44629592&ts=1692115454699"
 
 # 追番数据请求地址
 pn = 1
@@ -46,8 +44,18 @@ headers = {
 # 发送请求
 
 # 获取总量
-response_prev = requests.get(url=url5, headers=headers).json()
+response_prev = requests.get(url=url5, headers=headers)
+response_prev = response_prev.json()
+
+if response_prev['message'] == "用户隐私设置未公开":
+    print("请及时更换Cookies")
+    exit(1)
+
 pn_max = response_prev['data']['total'] / 15 + 1
+
+img_file_path = "./anime/anime_collection/static/files/img/"
+
+
 with open('./spider/files/collection_update_time.json', 'w', encoding='utf-8') as fi, open('./anime/anime_collection/static/files/json/collection.json', 'w', encoding='utf-8') as fo:
     json_data = list()
     while pn <= pn_max:
@@ -65,3 +73,16 @@ with open('./spider/files/collection_update_time.json', 'w', encoding='utf-8') a
     
     json.dump({'Update Time':  datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}, fi, indent=4, ensure_ascii=False)
     print("Local File Writing Finished!")
+
+
+    img_data = [] 
+    for item in json_data:
+        img_data = {"name": item['title'], "url": item['cover']} 
+        img_file_name =  f"{img_data['name']}.png"
+        with open(img_file_path + img_file_name, 'wb') as imf:
+            response = requests.get(img_data['url'])
+            if response.status_code == 200:
+                imf.write(response.content)
+                print(f"Image downloaded and saved as {img_file_path + img_file_name}")
+            else:
+                print("Failed to download image")
