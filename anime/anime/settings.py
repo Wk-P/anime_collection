@@ -118,8 +118,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'  # 在浏览器中访问静态文件的 URL 前缀
+
+# 设置每个应用程序的静态文件路径
+STATICFILES_DIRS = []
+
+# 静态文件的存储路径，这是用于运行 collectstatic 命令时的临时目录
+STATIC_ROOT = os.path.join(BASE_DIR, '/anime_collection/static')
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
@@ -129,3 +135,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS_ALLOW_ALL_ORIGINS = True
+
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'None'
+
+# SECURITY Setting
+# SECURITY安全设置 - 支持http时建议开启
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
